@@ -1,19 +1,29 @@
-import { Metadata } from 'next';
-import React from 'react'
+'use client'
+import { useRouter } from 'next/navigation';
+// import { Metadata } from 'next';
+import React, { use } from 'react'
 type Props = {params: Promise<{productId: string}>}
 
-export async function generateMetadata({params}: Props):Promise<Metadata>{
-	const productId = (await params).productId;
+// export async function generateMetadata({params}: Props):Promise<Metadata>{
+// 	const productId = (await params).productId;
 
-	return {
-		title: `Product ${productId}`,
-		description: `product description`
+// 	return {
+// 		title: `Product ${productId}`,
+// 		description: `product description`
+// 	}
+// }
+export default function ProductDetails({params}: Props) {
+	const productId = use(params).productId;
+	const router = useRouter()
+
+	const handleBuyNow  = ()=>{
+		router.push('/')
 	}
-}
-export default async function ProductDetails({params}: Props) {
-	const productId = (await params).productId;
 
   return (
-	<div>ProductDetails {productId} </div>
+	<div>
+		<h2>ProductDetails {productId} </h2>
+		<button onClick={handleBuyNow}>Buy Now</button>
+	</div>
   )
 }
