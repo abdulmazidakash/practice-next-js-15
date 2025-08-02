@@ -1,0 +1,7 @@
+import { users } from "@/data/users";
+
+export async function GET(request: Request, {params}: {params: {id: string}}){
+	const {id } = (await params);
+	const user = users.find(item => item.id === Number(id));
+	return Response.json(user)
+}
