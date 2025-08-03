@@ -1,9 +1,14 @@
 import { users } from "@/data/users";
+import { redirect } from "next/navigation";
 
 export async function GET(request: Request, {params}: {params: Promise<{id: string}>}){
 	const {id } = (await params);
 	const user = users.find(item => item.id === Number(id));
-	return Response.json(user)
+	if(user){
+		return Response.json(user)
+	}else{
+		redirect('/users/api')
+	}
 };
 
 export async function PATCH(request: Request, {params}: {params: Promise<{id: string}>}){

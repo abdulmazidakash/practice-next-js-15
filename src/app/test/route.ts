@@ -3,7 +3,7 @@ import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest){
 	const reqHeaders = new Headers(request.headers);
-	console.log(reqHeaders.get('abc'));
+	// console.log(reqHeaders.get('abc'));
 
 	const userCookie = request.cookies.get('test');
 	console.log(userCookie);
